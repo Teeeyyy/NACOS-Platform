@@ -7,7 +7,7 @@ const ElectionCreators = [
 const MatricNumbs = [
   {
     matricNo: 200502001,
-    matricAddress: "4PFBQOUG4AQPAIYEYOIVOOFCQXYUPVVW3UECD5MS3SEOM64LOWB5GFWDZM",
+    matricAddress: "4PFBQOUG4AQPAIYEYOIVOOFCQXYUPVVW3UECD5MS3SEOM64LOWB5GFWDZW",
   },
   {
     matricNo: 200502002,
