@@ -163,8 +163,9 @@ const ElectionList = () => {
       </>
     );
   }
-
   if (error) return "An error has occurred: " + error.message;
+
+  console.log(data);
 
   return (
     <div className="ptt_elt">
@@ -240,43 +241,47 @@ const ElectionList = () => {
                   ))}
                 </ul>
 
-                <div className="card_cand_hd">Select an option below:</div>
+                {!slug?.is_finished ? (
+                  <>
+                    <div className="card_cand_hd">Select an option below:</div>
 
-                <div className="card_cand">
-                  <ul className="card_cand_list">
-                    {slug?.candidates?.map((item, index) => (
-                      <li
-                        className={`cand_item ${
-                          item?.address === selectedAddr ? "selected" : ""
-                        }`}
-                        key={index}
-                        onClick={() => {
-                          setSelectedAddr(item?.address);
-                        }}
-                      >
-                        <div className="cand_img_cont">
-                          {!!item.image ? (
-                            <img src={item.image} alt="" />
-                          ) : (
-                            <i className="ph-circle-wavy-check"></i>
-                          )}
-                        </div>
-                        <p className="cand_det">{item.name}</p>
-                      </li>
-                    ))}
-                  </ul>
+                    <div className="card_cand">
+                      <ul className="card_cand_list">
+                        {slug?.candidates?.map((item, index) => (
+                          <li
+                            className={`cand_item ${
+                              item?.address === selectedAddr ? "selected" : ""
+                            }`}
+                            key={index}
+                            onClick={() => {
+                              setSelectedAddr(item?.address);
+                            }}
+                          >
+                            <div className="cand_img_cont">
+                              {!!item.image ? (
+                                <img src={item.image} alt="" />
+                              ) : (
+                                <i className="ph-circle-wavy-check"></i>
+                              )}
+                            </div>
+                            <p className="cand_det">{item.name}</p>
+                          </li>
+                        ))}
+                      </ul>
 
-                  <div className="rec_vote_cont">
-                    <button
-                      className="record_vote"
-                      onClick={(e) => {
-                        placeVote(selectedAddr, slug?.algo_per_vote, slug);
-                      }}
-                    >
-                      Submit vote
-                    </button>
-                  </div>
-                </div>
+                      <div className="rec_vote_cont">
+                        <button
+                          className="record_vote"
+                          onClick={(e) => {
+                            placeVote(selectedAddr, slug?.algo_per_vote, slug);
+                          }}
+                        >
+                          Submit vote
+                        </button>
+                      </div>
+                    </div>
+                  </>
+                ) : null}
               </div>
             );
           })}

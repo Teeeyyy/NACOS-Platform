@@ -51,7 +51,11 @@ const StartElection = () => {
                   }
                 >
                   <div className="elt_img_cont">
-                    <img src={item.process_image} alt="" />
+                    {item?.process_image ? (
+                      <img src={item?.process_image} alt="" />
+                    ) : (
+                      <i className="uil uil-mailbox"></i>
+                    )}
                   </div>
                   <div className="elt_det">
                     <p className="e_det_main">{`${item.title}`}</p>

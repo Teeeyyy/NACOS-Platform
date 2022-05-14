@@ -48,7 +48,11 @@ const OverlayElectionModal = () => {
         <div className="modal_cont">
           <div className="modal_r1">
             <div className="modal_elt_img">
-              <img src={modalData.process_image} alt="" />
+              {modalData?.process_image ? (
+                <img src={modalData?.process_image} alt="" />
+              ) : (
+                <i className="uil uil-mailbox"></i>
+              )}
             </div>
             <div className="modal_elt_tit">{modalData.title}</div>
           </div>
@@ -65,10 +69,7 @@ const OverlayElectionModal = () => {
                     {!!item.image ? (
                       <img src={item.image} alt="" />
                     ) : (
-                      <i
-                        className="uil uil-asterisk"
-                        style={{ fontSize: "16px" }}
-                      ></i>
+                      <i className="uil uil-asterisk"></i>
                     )}
                   </div>
                   <p className="cand_det">{item.name}</p>
@@ -77,9 +78,9 @@ const OverlayElectionModal = () => {
             </ul>
 
             <div className="modal_butts">
-              {!modalData?.is_started ? (
+              {!modalData?.is_started && !modalData?.is_finished ? (
                 <button onClick={startElection}>Start Election</button>
-              ) : !modalData?.is_finished ? (
+              ) : !modalData?.is_finished && modalData?.is_started ? (
                 <button onClick={endElection}>End Election</button>
               ) : (
                 <button>Election Ended</button>

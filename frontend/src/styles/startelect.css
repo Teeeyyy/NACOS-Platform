@@ -63,7 +63,14 @@
   border-top: none;
 }
 .elt_img_cont {
+  width: 25px;
+  height: 25px;
+  display: flex;
   margin-right: 20px;
+  border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #666;
 }
 .elt_img_cont img {
   width: 25px;

@@ -510,13 +510,20 @@ main {
   flex-direction: row;
   align-items: center;
 }
+.modal_elt_img {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  border-radius: 100%;
+  justify-content: center;
+  border: 1px solid #666;
+}
 .modal_elt_img img {
   width: 30px;
   height: 30px;
   object-fit: cover;
   border-radius: 100%;
-  border: 1px solid #ccc;
-  border: 1px solid var(--main-col);
 }
 .modal_elt_tit {
   margin-left: 20px;
@@ -550,12 +557,29 @@ main {
   flex-direction: row;
 }
 
+.cand_item {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-right: 20px;
+}
+.cand_img_cont {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  font-size: 12px;
+  margin-right: 3px;
+  border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #666;
+}
+
 .cand_img_cont img {
-  width: 20px;
-  height: 20px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 100%;
-  border: 1px solid #ccc;
 }
 
 .cand_det {
