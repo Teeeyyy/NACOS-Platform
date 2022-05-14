@@ -18,7 +18,7 @@ const OverlayElectionModal = () => {
 
     axios
       .post(`${URL}/elections/${modalData.slug}/start`, null, { headers })
-      .then((response) => alert(response.data.message))
+      .then((response) => alert("Election started successfully!"))
       .catch((err) => {
         console.log(err);
         alert("An error occured while starting election");
@@ -32,7 +32,7 @@ const OverlayElectionModal = () => {
 
     axios
       .post(`${URL}/elections/${modalData.slug}/end`, null, { headers })
-      .then((response) => alert(response.data.message))
+      .then((response) => alert("Election ended successfully!"))
       .catch((err) => {
         console.log(err);
         alert("An error occured while ending election");
@@ -59,8 +59,8 @@ const OverlayElectionModal = () => {
             <div className="modal_cand_hd">Candidates</div>
 
             <ul className="modal_cand_list">
-              {modalData.candidates?.map((item) => (
-                <li className="cand_item">
+              {modalData.candidates?.map((item, index) => (
+                <li className="cand_item" key={index}>
                   <div className="cand_img_cont">
                     {!!item.image ? (
                       <img src={item.image} alt="" />

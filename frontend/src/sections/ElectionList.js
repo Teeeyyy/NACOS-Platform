@@ -4,7 +4,7 @@ import "../styles/electionlist.scss";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { URL } from "../constants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import BarLoader from "react-spinners/BarLoader";
 import algosdk, { waitForConfirmation } from "algosdk";
@@ -12,7 +12,7 @@ import { indexerClient, algodClient, myAlgoConnect } from "../utils";
 import { MatricNumbs } from "../MatricNums";
 
 const ElectionList = () => {
-  const [matricNum, setMatricNum] = useState(8888);
+  const [matricNum, setMatricNum] = useState(800800800);
   const [selectedAddr, setSelectedAddr] = useState("");
   const walletAddress = localStorage.getItem("address");
 
@@ -23,6 +23,11 @@ const ElectionList = () => {
       refetchInterval: 60000,
     }
   );
+
+  useEffect(() => {
+    refetch();
+  }, []);
+
   // Register vote functions
 
   const AlgoConnect = async (voteData) => {
@@ -188,11 +193,10 @@ const ElectionList = () => {
         <ul className="card_list">
           {data?.map((slug, index) => {
             const scores = slug?.candidates.map((data) =>
-              data?.votes
-                ? Math.round(Number(data?.votes - 0.05) * 100) / 100
-                : 0
+              data?.votes ? Math.trunc(data?.votes) : 0
             );
             const totalScore = _.sum(scores);
+
             return (
               <div className="card_cont" key={index}>
                 <div className="card_r1">
@@ -216,7 +220,7 @@ const ElectionList = () => {
                       <div className="res_name_score">
                         <p className="res_item_name">{item?.name}</p>
                         <p className="res_score">
-                          {Math.round(Number(item?.votes - 0.05) * 100) / 100}
+                          {Math.trunc(item?.votes)}
                           &nbsp;:
                         </p>
                       </div>
@@ -226,9 +230,7 @@ const ElectionList = () => {
                           style={{
                             width: `calc(100% * ${
                               totalScore !== 0
-                                ? Math.round(Number(item?.votes - 0.05) * 100) /
-                                  100 /
-                                  totalScore
+                                ? Math.trunc(item?.votes) / totalScore
                                 : 0
                             })`,
                           }}

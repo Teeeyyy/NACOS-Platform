@@ -77,7 +77,7 @@ const TopNavigationBar = () => {
       <div className="small_header_inn">
         <div className="top_logo">
           <img src="/img/department_logo.jpeg" alt="" />
-          <p>NACOS VOTING PLATFORM</p>
+          <p>NACOSS VOTING PLATFORM</p>
         </div>
 
         {!!isWalletConnected ? (

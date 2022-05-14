@@ -24,7 +24,7 @@ const Landing = () => {
   return (
     <div className="landing" id="landing">
       <ScrollTextLand
-        word={"Decentralised NACOS Voting System Using Algorand"}
+        word={"Decentralised NACOSS Voting System Using Algorand"}
       />
       <div
         style={{
@@ -44,11 +44,11 @@ const Landing = () => {
         <div className="land_item1">
           <div className="icon_title">
             <img src="/img/school_logo.jpeg" alt="" />
-            <p className="hdy">NACOS</p>
+            <p className="hdy">NACOSS</p>
           </div>
 
           <p className="suby">
-            NACOS Voting System using Algorand Blockchain
+            NACOSS Voting System using Algorand Blockchain
             <br />
             <br />
             Platfrom for Decentralized Decisions to enable students create,
