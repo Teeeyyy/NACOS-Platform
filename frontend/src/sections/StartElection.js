@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { ElectionCreators } from "../MatricNums";
+import ElectionList from "./ElectionList";
 
 const StartElection = () => {
   // wallet-type & address
@@ -34,7 +35,7 @@ const StartElection = () => {
 
   if (error) return console.log("An error has occurred: " + error?.message);
 
-  return (
+  return ElectionCreators?.includes(walletAddress) ? (
     <div className="stt_elt">
       <div className="stt_elt_inn">
         <div className="stt_hd">Recently Created Elections</div>
@@ -111,41 +112,20 @@ const StartElection = () => {
 
         <div className="stt_hd">do any of the following</div>
 
-        {ElectionCreators?.includes(walletAddress) ? (
-          <div className="create_elect">
-            {
-              // If Wallet is connected this would be true
-              !!isWalletConnected ? (
-                <NavLink
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    textAlign: "center",
-                    cursor: "pointer",
-                  }}
-                  to={`./create`}
-                  key={"create"}
-                >
-                  Create New Election
-                </NavLink>
-              ) : (
-                <div
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    textAlign: "center",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    dispatch({ type: "modal_connect" });
-                  }}
-                >
-                  Create New Election
-                </div>
-              )
-            }
-          </div>
-        ) : null}
+        <div className="create_elect">
+          <NavLink
+            style={{
+              width: "100%",
+              height: "100%",
+              textAlign: "center",
+              cursor: "pointer",
+            }}
+            to={`./create`}
+            key={"create"}
+          >
+            Create New Election
+          </NavLink>
+        </div>
         <div className="participate_elt">
           <NavLink
             style={{ width: "100%", height: "100%", textAlign: "center" }}
@@ -157,6 +137,8 @@ const StartElection = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <ElectionList />
   );
 };
 
