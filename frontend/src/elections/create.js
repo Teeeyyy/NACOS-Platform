@@ -6,7 +6,10 @@ import algosdk from "algosdk";
 import "../styles/createelection.css";
 import { URL } from "../constants";
 import { ElectionCreators } from "../MatricNums";
+import { useNavigate } from "react-router-dom";
 const CreateElection = () => {
+  let navigate = useNavigate();
+
   // algod Client
   const algodClient = new algosdk.Algodv2(
     "",
@@ -206,7 +209,10 @@ const CreateElection = () => {
             },
             { headers }
           )
-          .then((response) => alert(response.data.message));
+          .then((response) => {
+            alert(response.data.message);
+            navigate("/elections", { replace: true });
+          });
       }
     });
   };
@@ -245,15 +251,15 @@ const CreateElection = () => {
                 className="vote_add_img"
                 onClick={() => hdImgPicker.current.click()}
               >
-                <p>Add Election Header Image</p>
+                <p>Add Poll Header Image</p>
               </div>
             </div>
 
             <div className="v_inp_cov inpCont_cand">
-              <p className="inp_tit">Election Title</p>
+              <p className="inp_tit">Poll Title</p>
               <input
                 type="text"
-                placeholder="eg. Best cryptocurrency"
+                placeholder="eg. Biggest school hostel"
                 value={processTit}
                 onChange={(e) => setProcessTit(e.target.value)}
               />
@@ -263,7 +269,7 @@ const CreateElection = () => {
             </div>
 
             <div className="v_inp_cov inpCont_cand">
-              <p className="inp_tit">Election Description</p>
+              <p className="inp_tit">Poll Description</p>
               <input
                 type="text"
                 placeholder="Describe process"
@@ -295,7 +301,7 @@ const CreateElection = () => {
                 <div className="add_item_sect_r1">
                   <input
                     type="text"
-                    placeholder="Election option"
+                    placeholder="Poll option"
                     value={itemInp}
                     onChange={(e) => setItemInp(e.target.value)}
                   />

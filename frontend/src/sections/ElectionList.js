@@ -10,6 +10,7 @@ import BarLoader from "react-spinners/BarLoader";
 import algosdk, { waitForConfirmation } from "algosdk";
 import { indexerClient, algodClient, myAlgoConnect } from "../utils";
 import { MatricNumbs } from "../MatricNums";
+import dayjs from "dayjs";
 
 const ElectionList = () => {
   const [matricNum, setMatricNum] = useState(800800800);
@@ -165,8 +166,6 @@ const ElectionList = () => {
   }
   if (error) return "An error has occurred: " + error.message;
 
-  console.log(data);
-
   return (
     <div className="ptt_elt">
       <div className="ptt_elt_inn">
@@ -201,14 +200,23 @@ const ElectionList = () => {
             return (
               <div className="card_cont" key={index}>
                 <div className="card_r1">
-                  <div className="card_elt_img">
-                    {!!slug?.process_image ? (
-                      <img src={slug.process_image} alt="" />
-                    ) : (
-                      <i className="uil uil-mailbox"></i>
-                    )}
+                  <div className="poll_name">
+                    <div className="card_elt_img">
+                      {!!slug?.process_image ? (
+                        <img src={slug.process_image} alt="" />
+                      ) : (
+                        <i className="uil uil-mailbox"></i>
+                      )}
+                    </div>
+                    <div className="card_elt_tit">{slug.title}</div>
                   </div>
-                  <div className="card_elt_tit">{slug.title}</div>
+                  <div className="election_end_time">
+                    {dayjs(slug?.end_at).diff(dayjs()) > 1
+                      ? `${dayjs(slug?.end_at)
+                          .tz(dayjs.tz.guess())
+                          .format("DD/MM/YYYY-hh:mm a")}`
+                      : "Election ended"}
+                  </div>
                 </div>
 
                 <div className="card_elt_desc">{slug?.card_desc}</div>
@@ -241,7 +249,7 @@ const ElectionList = () => {
                   ))}
                 </ul>
 
-                {!slug?.is_finished ? (
+                {!slug?.is_finished && dayjs(slug?.end_at).diff(dayjs()) > 1 ? (
                   <>
                     <div className="card_cand_hd">Select an option below:</div>
 

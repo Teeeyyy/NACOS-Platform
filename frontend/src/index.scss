@@ -556,6 +556,13 @@ main {
   flex-direction: row;
 }
 
+.date_time_picker {
+  margin-top: 30px;
+  .election_ends {
+    font-weight: 450;
+  }
+}
+
 .cand_item {
   display: flex;
   align-items: center;
@@ -587,12 +594,19 @@ main {
   margin-left: 5px;
 }
 .modal_butts {
+  gap: 10px;
   display: flex;
   margin: 30px 0px 20px;
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
+  .delete_election {
+    color: #fff;
+    font-weight: 450;
+    background: #f25348;
+  }
 }
+
 .modal_butts button {
   width: 100%;
   font-size: 13px;
